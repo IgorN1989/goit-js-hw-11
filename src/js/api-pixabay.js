@@ -13,12 +13,16 @@ async function fetchImages(value) {
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
+    per_page: 40,
   });
 
   const response = await axiosPixabay.get(`${BASE_URL}?${params}`);
 
-  const dataComponents = response.data.hits.map(item => {
-    return ({
+  const totalHits = response.data.totalHits;
+  console.log(totalHits);
+
+  const dataComponents = response.data.hits.map(
+    ({
       webformatURL,
       largeImageURL,
       tags,
@@ -26,8 +30,19 @@ async function fetchImages(value) {
       views,
       comments,
       downloads,
-    } = item);
-  });
+    }) => {
+      return {
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      };
+    }
+  );
+
   return dataComponents;
 }
 
