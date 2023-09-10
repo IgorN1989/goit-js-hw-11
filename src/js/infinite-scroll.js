@@ -13,6 +13,8 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   guard: document.querySelector('.js-guard'),
   loaderContainer: document.querySelector('.loader-container'),
+  span: document.querySelector('.js-selected-value'),
+  options: document.querySelector('.options-container'),
 };
 const pixabayApiService = new PixabayApiService();
 const galleryLightbox = new SimpleLightbox('.gallery a', {
@@ -23,12 +25,20 @@ const observer = new IntersectionObserver(onLoadMore, { rootMargin: '600px' });
 let totalShownImages = 0;
 
 refs.form.addEventListener('submit', onSearch);
+refs.form.addEventListener('input', onSpan);
 
 function onSearch(evt) {
   evt.preventDefault();
   clearGallery();
 
-  pixabayApiService.query = evt.currentTarget.elements.searchQuery.value.trim();
+  const { searchQuery, imageType, orientation, perPage } =
+    evt.currentTarget.elements;
+
+  pixabayApiService.query = searchQuery.value;
+  pixabayApiService.image_type = imageType.value;
+  pixabayApiService.orientation = orientation.value;
+  pixabayApiService.per_page = perPage.value;
+
   if (!pixabayApiService.query) {
     Notify.info('Please, enter your search query.');
     return;
@@ -36,6 +46,7 @@ function onSearch(evt) {
 
   pixabayApiService.resetPage();
   showElement(refs.loaderContainer);
+  hideElement(refs.options);
   loadImages();
 }
 
@@ -96,4 +107,9 @@ function onLoadMore(entries) {
       loadImages();
     }
   });
+}
+
+function onSpan(evt) {
+  refs.span.textContent = `${evt.currentTarget.elements.perPage.value}`;
+  showElement(refs.options);
 }
