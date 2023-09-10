@@ -19,6 +19,7 @@ const galleryLightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
 let totalShownImages = 0;
 
 refs.loadMoreBtn.hidden = true;
