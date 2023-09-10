@@ -14,6 +14,7 @@ const refs = {
   loadMoreBtn: document.querySelector('.load-more'),
   loaderContainer: document.querySelector('.loader-container'),
   span: document.querySelector('.js-selected-value'),
+  options: document.querySelector('.options-container'),
 };
 const pixabayApiService = new PixabayApiService();
 const galleryLightbox = new SimpleLightbox('.gallery a', {
@@ -45,6 +46,7 @@ function onSearch(evt) {
 
   pixabayApiService.resetPage();
   showElement(refs.loaderContainer);
+  hideElement(refs.options);
   loadImages();
 }
 
@@ -115,4 +117,5 @@ function smoothScroll() {
 
 function onSpan(evt) {
   refs.span.textContent = `${evt.currentTarget.elements.perPage.value}`;
+  showElement(refs.options);
 }
