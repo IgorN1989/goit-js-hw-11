@@ -10,17 +10,21 @@ class PixabayApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.image_type = 'photo';
+    this.orientation = 'horizontal';
+    this.safesearch = true;
+    this.per_page = 40;
   }
 
   async fetchImages() {
     const params = new URLSearchParams({
       key: API_KEY,
       q: this.searchQuery,
-      image_type: 'photo',
-      orientation: 'horizontal',
-      safesearch: true,
+      image_type: this.image_type,
+      orientation: this.orientation,
+      safesearch: this.safesearch,
       page: this.page,
-      per_page: 40,
+      per_page: this.per_page,
     });
     const response = await axiosPixabay.get(`${BASE_URL}?${params}`);
 
