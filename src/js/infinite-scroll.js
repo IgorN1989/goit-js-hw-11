@@ -30,6 +30,7 @@ refs.form.addEventListener('input', onSpan);
 function onSearch(evt) {
   evt.preventDefault();
   clearGallery();
+  observer.unobserve(refs.guard);
 
   const { searchQuery, imageType, orientation, perPage } =
     evt.currentTarget.elements;
