@@ -1,0 +1,55 @@
+<div class="option-form-container">
+  <form class="option-form" id="option-form">
+    <div class="option-container">
+      <p>Image type</p>
+      <label>
+        <input type="radio" name="image-type" value="all" />
+        All
+      </label>
+      <label>
+        <input type="radio" name="image-type" value="photo" />
+        Photo
+      </label>
+      <label>
+        <input type="radio" name="image-type" value="illustration" />
+        Illustration
+      </label>
+      <label>
+        <input type="radio" name="image-type" value="vector" />
+        Vector
+      </label>
+    </div>
+
+    <div class="option-container">
+      <p>Orientation</p>
+      <label>
+        <input type="radio" name="orientation" value="all" />
+        All
+      </label>
+      <label>
+        <input type="radio" name="orientation" value="horizontal" />
+        Horizontal
+      </label>
+      <label>
+        <input type="radio" name="orientation" value="vertical" />
+        Vertical
+      </label>
+    </div>
+
+    <div div class="option-container">
+      <label>
+        Images per page:
+        <input
+          type="range"
+          name="interest_rate"
+          value="40"
+          min="5"
+          max="100"
+          step="1"
+        />
+      </label>
+
+      <p>Selected value: <span class="js-selected-value">40</span></p>
+    </div>
+  </form>
+</div>
