@@ -1,4 +1,7 @@
 function createMarkup(arr) {
+  const defaultImg =
+    'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+
   return arr
     .map(
       ({
@@ -12,22 +15,24 @@ function createMarkup(arr) {
       }) => `
 <div class="photo-card">
     <div class="image-container">
-        <a class="original-image" href="${largeImageURL}">
-        <img class="preview-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
+        <a class="original-image" href="${largeImageURL || defaultImg}">
+        <img class="preview-image" src="${
+          webformatURL || defaultImg
+        }" alt="${tags}" loading="lazy" />
         </a>
     </div>
     <div class="info">
         <p class="info-item">
-            <b>Likes</b> ${likes}
+            <b>Likes</b> ${likes || '-'}
         </p>
         <p class="info-item">
-            <b>Views</b> ${views}
+            <b>Views</b> ${views || '-'}
         </p>
         <p class="info-item">
-            <b>Comments</b>${comments}
+            <b>Comments</b>${comments || '-'}
         </p>
         <p class="info-item">
-            <b>Downloads</b>${downloads}
+            <b>Downloads</b>${downloads || '-'}
         </p>
     </div>
 </div>`
