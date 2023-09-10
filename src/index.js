@@ -19,7 +19,7 @@ const galleryLightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-let totalImages = 0;
+let totalShownImages = 0;
 
 refs.loadMoreBtn.hidden = true;
 
@@ -39,7 +39,7 @@ function onSearch(evt) {
   }
 
   pixabayApiService.resetPage();
-  totalImages = 0;
+  totalShownImages = 0;
 
   loadImages();
 }
@@ -63,15 +63,15 @@ async function loadImages() {
 
     appendGalleryMarkup(images);
 
-    if (!totalImages) {
+    if (!totalShownImages) {
       Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
       smoothScroll();
     }
 
-    totalImages += images.length;
+    totalShownImages += images.length;
 
-    if (totalImages < totalHits) {
+    if (totalShownImages < totalHits) {
       showElement(refs.loadMoreBtn);
     } else {
       hideElement(refs.loadMoreBtn);
