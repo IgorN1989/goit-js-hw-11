@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixabay Images</title>
+    <link rel="icon" href="../images/favicon.svg" type="image/svg" />
+    <link rel="stylesheet" href="../sass/index.scss" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/infinite-scroll.js"></script>
+  </head>
+  <body>
+    <a href="./">Return</a>
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+      <button type="submit" name="submitBtn">Search</button>
+    </form>
+
+    <div class="gallery"></div>
+    <div class="js-guard"></div>
+
+    <div class="loader-container is-hidden">
+      <span class="loader"></span>
+    </div>
+
+    <!-- <include src="./partials/options.html"></include> -->
+  </body>
+</html>
