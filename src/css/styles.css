@@ -180,3 +180,8 @@
 .is-hidden {
   display: none;
 }
+
+
+.option-container {
+  outline: 1px solid red;
+}
