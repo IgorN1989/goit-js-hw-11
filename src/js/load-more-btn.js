@@ -13,6 +13,7 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   loadMoreBtn: document.querySelector('.load-more'),
   loaderContainer: document.querySelector('.loader-container'),
+  span: document.querySelector('.js-selected-value'),
 };
 const pixabayApiService = new PixabayApiService();
 const galleryLightbox = new SimpleLightbox('.gallery a', {
@@ -23,12 +24,20 @@ let totalShownImages = 0;
 
 refs.form.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', loadImages);
+refs.form.addEventListener('input', onSpan);
 
 function onSearch(evt) {
   evt.preventDefault();
   clearGallery();
 
-  pixabayApiService.query = evt.currentTarget.elements.searchQuery.value;
+  const { searchQuery, imageType, orientation, perPage } =
+    evt.currentTarget.elements;
+
+  pixabayApiService.query = searchQuery.value;
+  pixabayApiService.image_type = imageType.value;
+  pixabayApiService.orientation = orientation.value;
+  pixabayApiService.per_page = perPage.value;
+
   if (!pixabayApiService.query) {
     Notify.info('Please, enter your search query.');
     return;
@@ -102,4 +111,8 @@ function smoothScroll() {
     top: cardHeight * 2,
     behavior: 'smooth',
   });
+}
+
+function onSpan(evt) {
+  refs.span.textContent = `${evt.currentTarget.elements.perPage.value}`;
 }
