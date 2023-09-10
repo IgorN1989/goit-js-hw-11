@@ -34,6 +34,7 @@ function onSearch(evt) {
   pixabayApiService.query = evt.currentTarget.elements.searchQuery.value;
   if (!pixabayApiService.query) {
     Notify.info('Please, enter your search query.');
+    hideElement(refs.loaderContainer);
 
     return;
   }
