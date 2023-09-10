@@ -1,7 +1,7 @@
 window.onscroll = () => changeSearchBackground();
 
 function changeSearchBackground() {
-  const search = document.querySelector('.search-container');
+  const search = document.querySelector('.form-container');
   const searchOffsetTrigger = search.offsetHeight;
   const pageOffset = window.scrollY;
 
